@@ -1,0 +1,1107 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Brandi Kitchens | Freelance Python Developer | AI/ML Software Builder</title>
+  <meta name="description" content="Freelance Python developer specializing in AI/ML software, intelligent tools, automation systems, dashboards, APIs, and custom business applications." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg:#060814;
+      --panel:rgba(255,255,255,.06);
+      --panel2:rgba(255,255,255,.08);
+      --border:rgba(255,255,255,.12);
+      --text:#eef2ff;
+      --muted:rgba(238,242,255,.72);
+      --muted2:rgba(238,242,255,.55);
+
+      --g1:#7c3aed;
+      --g2:#22d3ee;
+      --g3:#f59e0b;
+      --g4:#10b981;
+
+      --shadow:0 18px 60px rgba(0,0,0,.55);
+      --radius:18px;
+      --radius-lg:28px;
+      --max:1160px;
+      --ring:conic-gradient(from 210deg, rgba(124,58,237,.95), rgba(34,211,238,.90), rgba(245,158,11,.90), rgba(16,185,129,.85), rgba(124,58,237,.95));
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+      background:
+        radial-gradient(1100px 600px at 20% 10%, rgba(124,58,237,.23), transparent 56%),
+        radial-gradient(950px 550px at 84% 18%, rgba(34,211,238,.16), transparent 54%),
+        radial-gradient(850px 540px at 18% 92%, rgba(245,158,11,.11), transparent 55%),
+        radial-gradient(880px 560px at 82% 84%, rgba(16,185,129,.10), transparent 58%),
+        var(--bg);
+      color:var(--text);
+      overflow-x:hidden;
+      cursor:none;
+    }
+
+    a{color:inherit;text-decoration:none}
+    img{display:block;max-width:100%}
+    .wrap{max-width:var(--max);margin:0 auto;padding:28px 20px 90px}
+
+    .cursor{
+      position:fixed;
+      inset:0 auto auto 0;
+      width:14px;height:14px;
+      border-radius:50%;
+      background:rgba(255,255,255,.92);
+      transform:translate(-50%,-50%);
+      pointer-events:none;
+      mix-blend-mode:difference;
+      z-index:9999;
+      opacity:0;
+      transition:width .15s ease,height .15s ease,opacity .15s ease;
+    }
+    .cursor-ring{
+      position:fixed;
+      inset:0 auto auto 0;
+      width:40px;height:40px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.34);
+      transform:translate(-50%,-50%);
+      pointer-events:none;
+      z-index:9998;
+      opacity:0;
+      transition:width .15s ease,height .15s ease,opacity .15s ease;
+    }
+    .cursor.is-hover{width:10px;height:10px}
+    .cursor-ring.is-hover{width:54px;height:54px}
+
+    .orbs{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}
+    .orb{
+      position:absolute;
+      width:520px;height:520px;
+      border-radius:50%;
+      filter:blur(28px);
+      opacity:.18;
+      animation:drift 18s ease-in-out infinite;
+    }
+    .orb.o1{left:-120px;top:-130px;background:radial-gradient(circle at 30% 30%, rgba(124,58,237,.9), transparent 58%)}
+    .orb.o2{right:-180px;top:40px;background:radial-gradient(circle at 30% 30%, rgba(34,211,238,.82), transparent 60%);animation-duration:22s}
+    .orb.o3{left:12%;bottom:-220px;background:radial-gradient(circle at 30% 30%, rgba(245,158,11,.78), transparent 60%);animation-duration:25s}
+    @keyframes drift{
+      0%,100%{transform:translate3d(0,0,0) scale(1)}
+      50%{transform:translate3d(40px,-20px,0) scale(1.05)}
+    }
+
+    header{
+      position:relative;z-index:2;
+      display:flex;align-items:center;justify-content:space-between;
+      gap:16px;
+      padding:12px 0 22px;
+    }
+    .brand{
+      display:flex;align-items:center;gap:10px;
+      font-weight:900;
+      letter-spacing:.2px;
+    }
+    .brand .dot{
+      width:10px;height:10px;border-radius:50%;
+      background:linear-gradient(135deg,var(--g1),var(--g2));
+      box-shadow:0 0 0 6px rgba(124,58,237,.12);
+    }
+    nav{display:flex;gap:12px;flex-wrap:wrap}
+    nav a{
+      color:var(--muted);
+      font-weight:800;
+      font-size:14px;
+      padding:10px;
+      border-radius:999px;
+      border:1px solid transparent;
+      transition:.18s ease;
+    }
+    nav a:hover{
+      color:var(--text);
+      border-color:rgba(255,255,255,.12);
+      background:rgba(255,255,255,.04);
+    }
+
+    .hero{
+      position:relative;z-index:2;
+      display:grid;
+      grid-template-columns:1.08fr .92fr;
+      gap:28px;
+      align-items:center;
+      padding:26px 0 10px;
+    }
+    @media (max-width:980px){
+      .hero{grid-template-columns:1fr}
+    }
+    @media (max-width:920px){
+      .project-feature .inner > div[style*="grid-template-columns:1.15fr .85fr"]{grid-template-columns:1fr !important;}
+    }
+
+    .badge{
+      display:inline-flex;align-items:center;gap:10px;
+      padding:9px 12px;
+      border-radius:999px;
+      background:rgba(16,185,129,.10);
+      border:1px solid rgba(16,185,129,.24);
+      color:rgba(255,255,255,.94);
+      font-size:13px;
+      font-weight:900;
+      width:fit-content;
+    }
+    .pulse{
+      width:8px;height:8px;border-radius:50%;
+      background:rgba(16,185,129,.95);
+      box-shadow:0 0 0 0 rgba(16,185,129,.55);
+      animation:pulse 1.6s infinite;
+    }
+    @keyframes pulse{
+      0%{box-shadow:0 0 0 0 rgba(16,185,129,.55)}
+      70%{box-shadow:0 0 0 12px rgba(16,185,129,0)}
+      100%{box-shadow:0 0 0 0 rgba(16,185,129,0)}
+    }
+
+    h1{
+      margin:14px 0 10px;
+      font-size:clamp(38px,4.4vw,58px);
+      line-height:1.02;
+      letter-spacing:-.8px;
+    }
+    .gradtext{
+      background:linear-gradient(90deg, rgba(124,58,237,.98), rgba(34,211,238,.98), rgba(245,158,11,.96));
+      -webkit-background-clip:text;
+      background-clip:text;
+      color:transparent;
+    }
+    .tagline{
+      margin:0 0 14px;
+      color:var(--muted);
+      font-size:16px;
+      line-height:1.6;
+      font-weight:700;
+      max-width:66ch;
+    }
+    .tagline b{color:rgba(255,255,255,.96)}
+    .pitch{
+      margin:0;
+      color:rgba(255,255,255,.87);
+      font-size:15px;
+      line-height:1.68;
+      font-weight:600;
+      max-width:67ch;
+    }
+
+    .cta-row{
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+      margin-top:18px;
+    }
+    .btn{
+      display:inline-flex;align-items:center;justify-content:center;gap:10px;
+      padding:12px 14px;
+      border-radius:12px;
+      border:1px solid rgba(255,255,255,.14);
+      background:rgba(255,255,255,.06);
+      color:rgba(255,255,255,.96);
+      font-weight:900;
+      font-size:14px;
+      transition:transform .14s ease, background .14s ease, border-color .14s ease;
+      box-shadow:0 10px 28px rgba(0,0,0,.24);
+    }
+    .btn:hover{
+      transform:translateY(-2px);
+      background:rgba(255,255,255,.08);
+      border-color:rgba(255,255,255,.22);
+    }
+    .btn.primary{
+      border-color:rgba(124,58,237,.30);
+      background:linear-gradient(135deg, rgba(124,58,237,.34), rgba(34,211,238,.18));
+    }
+    .btn small{opacity:.8;font-weight:900}
+
+    .visual{
+      position:relative;
+      min-height:370px;
+      border-radius:var(--radius-lg);
+      background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+      border:1px solid rgba(255,255,255,.10);
+      box-shadow:var(--shadow);
+      overflow:hidden;
+    }
+    .visual::before{
+      content:"";
+      position:absolute;inset:-2px;
+      background:
+        radial-gradient(620px 420px at 20% 20%, rgba(124,58,237,.34), transparent 56%),
+        radial-gradient(540px 420px at 82% 24%, rgba(34,211,238,.20), transparent 58%),
+        radial-gradient(560px 420px at 55% 82%, rgba(245,158,11,.16), transparent 64%);
+      opacity:.95;
+    }
+    .ring{
+      position:absolute;
+      left:50%;top:50%;
+      width:260px;height:260px;
+      transform:translate(-50%,-50%);
+      border-radius:50%;
+      background:var(--ring);
+      filter:drop-shadow(0 18px 60px rgba(124,58,237,.18));
+      animation:spin 18s linear infinite;
+      opacity:.95;
+    }
+    .ring::after{
+      content:"";
+      position:absolute;inset:12px;
+      border-radius:50%;
+      background:radial-gradient(circle at 30% 30%, rgba(255,255,255,.10), rgba(255,255,255,.03) 55%, rgba(0,0,0,.08));
+      border:1px solid rgba(255,255,255,.10);
+    }
+    @keyframes spin{
+      to{transform:translate(-50%,-50%) rotate(360deg)}
+    }
+    .orbit{
+      position:absolute;
+      left:50%;top:50%;
+      width:320px;height:320px;
+      transform:translate(-50%,-50%);
+      animation:spin2 26s linear infinite;
+    }
+    @keyframes spin2{
+      to{transform:translate(-50%,-50%) rotate(-360deg)}
+    }
+    .chip{
+      position:absolute;
+      padding:8px 10px;
+      font-size:12px;
+      font-weight:900;
+      color:rgba(255,255,255,.92);
+      border-radius:999px;
+      background:rgba(255,255,255,.07);
+      border:1px solid rgba(255,255,255,.12);
+      backdrop-filter:blur(8px);
+      white-space:nowrap;
+    }
+    .chip:nth-child(1){left:50%;top:-8px;transform:translateX(-50%)}
+    .chip:nth-child(2){right:-14px;top:50%;transform:translateY(-50%)}
+    .chip:nth-child(3){left:50%;bottom:-10px;transform:translateX(-50%)}
+    .chip:nth-child(4){left:-16px;top:50%;transform:translateY(-50%)}
+    .chip:nth-child(5){right:10px;top:12px}
+    .chip:nth-child(6){left:10px;bottom:14px}
+
+    .visual-center{
+      position:absolute;left:50%;top:50%;
+      transform:translate(-50%,-50%);
+      text-align:center;
+      width:78%;
+      z-index:2;
+    }
+    .visual-center .kicker{
+      font-weight:900;
+      letter-spacing:.2px;
+      font-size:12px;
+      color:rgba(255,255,255,.80);
+      text-transform:uppercase;
+    }
+    .visual-center .big{
+      margin:10px 0 0;
+      font-size:24px;
+      font-weight:900;
+      letter-spacing:-.3px;
+      line-height:1.16;
+    }
+    .visual-center .sub{
+      margin:8px 0 0;
+      color:var(--muted);
+      font-weight:700;
+      font-size:13px;
+      line-height:1.45;
+    }
+
+    section{position:relative;z-index:2;margin-top:56px}
+    .section-title{
+      display:flex;align-items:flex-end;justify-content:space-between;
+      gap:16px;
+      margin-bottom:16px;
+    }
+    .section-title h2{
+      margin:0;
+      font-size:22px;
+      letter-spacing:-.2px;
+    }
+    .section-title p{
+      margin:0;
+      color:var(--muted);
+      font-weight:700;
+      font-size:13px;
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns:repeat(12,1fr);
+      gap:14px;
+    }
+    .card{
+      border-radius:var(--radius);
+      background:rgba(255,255,255,.05);
+      border:1px solid rgba(255,255,255,.10);
+      box-shadow:0 10px 34px rgba(0,0,0,.24);
+      overflow:hidden;
+    }
+    .card.pad{padding:16px}
+    .muted{color:var(--muted);font-weight:700;line-height:1.55}
+    .muted2{color:var(--muted2);font-weight:700;line-height:1.55}
+
+    .reveal{
+      opacity:0;
+      transform:translateY(10px) scale(.99);
+      transition:opacity .6s ease, transform .6s ease;
+    }
+    .reveal.in{
+      opacity:1;
+      transform:translateY(0) scale(1);
+    }
+
+    .service{grid-column:span 4}
+    @media (max-width:980px){.service{grid-column:span 6}}
+    @media (max-width:640px){.service{grid-column:span 12}}
+    .service h3{
+      margin:0 0 8px;
+      font-size:16px;
+      letter-spacing:-.2px;
+    }
+    .service p{
+      margin:0;
+      color:var(--muted);
+      font-size:14px;
+      line-height:1.55;
+      font-weight:700;
+    }
+
+    .about-main{grid-column:span 7}
+    .about-side{grid-column:span 5}
+    @media (max-width:980px){
+      .about-main,.about-side{grid-column:span 12}
+    }
+    .about-main h3{
+      margin:0 0 10px;
+      font-size:18px;
+      letter-spacing:-.2px;
+    }
+    .stat-grid{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:10px;
+      margin-top:14px;
+    }
+    @media (max-width:680px){
+      .stat-grid{grid-template-columns:1fr}
+    }
+    .stat{
+      padding:12px;
+      border-radius:14px;
+      background:rgba(255,255,255,.04);
+      border:1px solid rgba(255,255,255,.10);
+    }
+    .stat .num{font-weight:900;font-size:18px}
+    .stat .lbl{margin-top:4px;color:var(--muted);font-weight:800;font-size:12px}
+
+    .quick-links{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-top:12px;
+    }
+    .pill{
+      display:inline-flex;align-items:center;gap:8px;
+      padding:10px 12px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.12);
+      background:rgba(255,255,255,.05);
+      color:rgba(255,255,255,.90);
+      font-weight:900;
+      font-size:13px;
+      transition:transform .14s ease, background .14s ease, border-color .14s ease;
+    }
+    .pill:hover{
+      transform:translateY(-2px);
+      background:rgba(255,255,255,.07);
+      border-color:rgba(255,255,255,.22);
+    }
+
+    .skill-card{grid-column:span 4}
+    @media (max-width:980px){.skill-card{grid-column:span 6}}
+    @media (max-width:640px){.skill-card{grid-column:span 12}}
+    .skill-card h3{
+      margin:0 0 10px;
+      font-size:16px;
+      letter-spacing:-.2px;
+    }
+    .chiplist{
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
+      margin-top:10px;
+    }
+    .mini{
+      font-size:12px;
+      font-weight:900;
+      padding:8px 10px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.12);
+      background:rgba(255,255,255,.04);
+      color:rgba(255,255,255,.88);
+    }
+
+    .project-feature{
+      grid-column:span 12;
+      position:relative;
+      background:linear-gradient(135deg, rgba(124,58,237,.22), rgba(34,211,238,.10));
+      border-color:rgba(124,58,237,.22);
+    }
+    .project-feature::before{
+      content:"";
+      position:absolute;inset:-1px;
+      background:
+        radial-gradient(900px 320px at 10% 10%, rgba(124,58,237,.24), transparent 55%),
+        radial-gradient(680px 320px at 85% 30%, rgba(34,211,238,.16), transparent 60%);
+      pointer-events:none;
+    }
+    .project-feature .inner{position:relative;padding:20px}
+    .project-feature h3{
+      margin:0 0 6px;
+      font-size:22px;
+      letter-spacing:-.2px;
+    }
+
+    .project{grid-column:span 6}
+    @media (max-width:980px){.project{grid-column:span 12}}
+    .project .inner{padding:16px}
+    .project h3{
+      margin:0 0 6px;
+      font-size:17px;
+      letter-spacing:-.2px;
+    }
+    .project p{
+      margin:0;
+      color:var(--muted);
+      font-weight:700;
+      line-height:1.55;
+    }
+
+    .eyebrow{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:8px 11px;
+      border-radius:999px;
+      background:rgba(255,255,255,.06);
+      border:1px solid rgba(255,255,255,.12);
+      font-size:12px;
+      font-weight:900;
+      color:rgba(255,255,255,.92);
+      margin-bottom:12px;
+    }
+
+    .tech{
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
+      margin-top:10px;
+    }
+    .tag{
+      font-size:12px;
+      font-weight:900;
+      padding:7px 10px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.12);
+      background:rgba(0,0,0,.15);
+      color:rgba(255,255,255,.88);
+      backdrop-filter:blur(10px);
+    }
+
+    .callouts{
+      margin-top:14px;
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:10px;
+    }
+    @media (max-width:860px){
+      .callouts{grid-template-columns:1fr}
+    }
+    .callout{
+      padding:12px;
+      border-radius:14px;
+      background:rgba(255,255,255,.05);
+      border:1px solid rgba(255,255,255,.12);
+    }
+    .callout .t{
+      font-weight:900;
+      font-size:13px;
+    }
+    .callout .d{
+      margin-top:6px;
+      color:var(--muted);
+      font-weight:750;
+      font-size:13px;
+      line-height:1.45;
+    }
+
+    .project .footer{
+      margin-top:12px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      flex-wrap:wrap;
+      color:rgba(255,255,255,.86);
+      font-weight:900;
+      font-size:13px;
+    }
+
+    .cta-banner{
+      grid-column:span 12;
+      padding:20px;
+      border-radius:22px;
+      background:linear-gradient(135deg, rgba(124,58,237,.22), rgba(34,211,238,.10));
+      border:1px solid rgba(255,255,255,.12);
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+      flex-wrap:wrap;
+    }
+    .cta-banner h3{
+      margin:0 0 8px;
+      font-size:20px;
+      letter-spacing:-.2px;
+    }
+    .cta-banner p{
+      margin:0;
+      color:var(--muted);
+      font-weight:700;
+      line-height:1.55;
+      max-width:720px;
+    }
+
+    footer{
+      margin-top:64px;
+      color:var(--muted2);
+      font-weight:700;
+      font-size:13px;
+      position:relative;z-index:2;
+      display:flex;
+      justify-content:space-between;
+      gap:12px;
+      flex-wrap:wrap;
+      padding-top:18px;
+      border-top:1px solid rgba(255,255,255,.10);
+    }
+  </style>
+</head>
+<body>
+  <div class="orbs" aria-hidden="true">
+    <div class="orb o1"></div>
+    <div class="orb o2"></div>
+    <div class="orb o3"></div>
+  </div>
+
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-ring" id="cursorRing"></div>
+
+  <div class="wrap">
+    <header class="reveal">
+      <div class="brand">
+        <span class="dot"></span>
+        <span>Brandi <span class="gradtext">Kitchens</span></span>
+      </div>
+
+      <nav>
+        <a href="#services" data-hover>Services</a>
+        <a href="#projects" data-hover>Projects</a>
+        <a href="#about" data-hover>About</a>
+        <a href="#contact" data-hover>Contact</a>
+      </nav>
+    </header>
+
+    <section class="hero">
+      <div class="reveal">
+        <div class="badge" data-hover>
+          <span class="pulse"></span>
+          Available for freelance AI/ML and Python projects
+        </div>
+
+        <h1>
+          Freelance Python Developer<br>
+          <span class="gradtext">AI/ML Tools & Intelligent Software Builder</span>
+        </h1>
+
+        <p class="tagline">
+          I build <b>AI/ML-powered Python software</b> for businesses that want intelligent tools, smarter automation,
+          and practical systems — with a specialization in RAG applications, machine learning workflows, dashboards, APIs, and custom software.
+        </p>
+
+        <p class="pitch">
+          I help businesses turn documents, data, and repetitive workflows into intelligent software they can actually use — from RAG-powered knowledge assistants to machine learning dashboards, automation systems, and internal AI tools.
+        </p>
+
+        <div style="margin-top:16px; display:flex; flex-wrap:wrap; gap:8px;">
+          <span class="tag" data-hover>Python</span>
+          <span class="tag" data-hover>FastAPI</span>
+          <span class="tag" data-hover>RAG</span>
+          <span class="tag" data-hover>Embeddings</span>
+          <span class="tag" data-hover>Vector Search</span>
+          <span class="tag" data-hover>LLM Integration</span>
+        </div>
+
+        <div class="cta-row">
+          <a class="btn primary" href="mailto:bdcreativesystems@gmail.com" data-hover>Start a Project</a>
+          <a class="btn" href="https://github.com/bdcreativesystems-star" target="_blank" rel="noreferrer" data-hover>
+            GitHub <small>↗</small>
+          </a>
+          <a class="btn" href="https://linkedin.com/in/brandi-kitchens-706275a8" target="_blank" rel="noreferrer" data-hover>
+            LinkedIn <small>↗</small>
+          </a>
+        </div>
+      </div>
+
+      <div class="visual reveal" aria-label="Animated skill ring">
+        <div class="ring"></div>
+        <div class="orbit" aria-hidden="true">
+          <div class="chip" data-hover>RAG Systems</div>
+          <div class="chip" data-hover>AI/ML Tools</div>
+          <div class="chip" data-hover>Dashboards</div>
+          <div class="chip" data-hover>APIs</div>
+          <div class="chip" data-hover>Automation</div>
+          <div class="chip" data-hover>Python Apps</div>
+        </div>
+
+        <div class="visual-center">
+          <div class="kicker">AI/ML Tools for Real Workflows</div>
+          <div class="big">RAG Systems, Intelligent Tools, and Python Software</div>
+          <div class="sub">Document intelligence, AI assistants, dashboards, APIs, automation systems, and custom business tools.</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="services">
+      <div class="section-title reveal">
+        <h2>Services</h2>
+        <p>What clients can hire me to build.</p>
+      </div>
+
+      <div class="grid">
+        <div class="card pad service reveal">
+          <h3>RAG & Knowledge Assistant Systems</h3>
+          <p>I build retrieval-powered AI tools that search documents, surface context, and generate grounded answers for internal knowledge workflows.</p>
+        </div>
+
+        <div class="card pad service reveal">
+          <h3>Custom AI/ML Tools</h3>
+          <p>I create practical AI/ML tools designed for real use, from prediction systems to intelligent internal applications.</p>
+        </div>
+
+        <div class="card pad service reveal">
+          <h3>Automation Systems</h3>
+          <p>I develop software that reduces repetitive work, connects workflows, and improves efficiency across business operations.</p>
+        </div>
+
+        <div class="card pad service reveal">
+          <h3>Dashboards & Analytics</h3>
+          <p>Interactive dashboards for tracking KPIs, exploring business data, and supporting smarter decisions with machine learning insights.</p>
+        </div>
+
+        <div class="card pad service reveal">
+          <h3>APIs & Backend Tools</h3>
+          <p>Backend services and APIs for data processing, model serving, integrations, and AI-powered application workflows.</p>
+        </div>
+
+        <div class="card pad service reveal">
+          <h3>AI-Powered Business Solutions</h3>
+          <p>I help turn raw data, documents, and workflows into intelligent software that businesses can actually use.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects">
+      <div class="section-title reveal">
+        <h2>Featured AI/ML Projects</h2>
+        <p>Portfolio work centered around intelligent tools, RAG systems, and practical business software.</p>
+      </div>
+
+      <div class="grid">
+        <article class="card project-feature reveal">
+          <div class="inner">
+            <div class="eyebrow">Featured Project • Core AI Focus</div>
+            <h3>RAG System — Retrieval-Augmented Knowledge Assistant</h3>
+            <p class="muted" style="margin:0; max-width:95ch;">
+              A retrieval-augmented generation system that ingests documents, retrieves relevant context, and produces grounded answers from private knowledge sources.
+              This is the front-and-center project in my portfolio because it represents the kind of AI/ML tools I most want to build for clients: document intelligence,
+              searchable knowledge bases, internal assistants, and AI systems that are useful inside real workflows.
+            </p>
+
+            <div class="tech">
+              <span class="tag" data-hover>Python</span>
+              <span class="tag" data-hover>RAG</span>
+              <span class="tag" data-hover>Embeddings</span>
+              <span class="tag" data-hover>Vector Search</span>
+              <span class="tag" data-hover>LLM Integration</span>
+              <span class="tag" data-hover>FastAPI</span>
+            </div>
+
+            <div class="callouts">
+              <div class="callout" data-hover>
+                <div class="t">Architecture</div>
+                <div class="d">Document ingestion → chunking → embeddings → retrieval → grounded answer generation.</div>
+              </div>
+              <div class="callout" data-hover>
+                <div class="t">Client Use Cases</div>
+                <div class="d">Internal documentation assistants, FAQ tools, searchable knowledge bases, support workflows, and private business AI.</div>
+              </div>
+              <div class="callout" data-hover>
+                <div class="t">Business Value</div>
+                <div class="d">Helps teams search company knowledge faster and turn static documents into useful, interactive intelligence.</div>
+              </div>
+            </div>
+
+            <div style="margin-top:16px; display:grid; grid-template-columns:1.15fr .85fr; gap:14px; align-items:stretch;">
+              <div class="card" style="min-height:260px; background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03)); border:1px solid rgba(255,255,255,.12); display:flex; align-items:center; justify-content:center; padding:18px;">
+                <div style="width:100%; max-width:520px;">
+                  <div style="font-size:12px; font-weight:900; color:rgba(255,255,255,.72); text-transform:uppercase; letter-spacing:.16em; margin-bottom:10px;">Featured RAG Preview</div>
+                  <div style="border-radius:18px; overflow:hidden; border:1px solid rgba(255,255,255,.10); background:rgba(7,10,22,.92); box-shadow:0 12px 40px rgba(0,0,0,.28);">
+                    <div style="display:flex; align-items:center; gap:8px; padding:10px 12px; border-bottom:1px solid rgba(255,255,255,.08); background:rgba(255,255,255,.03);">
+                      <span style="width:9px; height:9px; border-radius:50%; background:rgba(255,255,255,.45);"></span>
+                      <span style="width:9px; height:9px; border-radius:50%; background:rgba(255,255,255,.28);"></span>
+                      <span style="width:9px; height:9px; border-radius:50%; background:rgba(255,255,255,.18);"></span>
+                      <span style="margin-left:8px; font-size:12px; font-weight:800; color:rgba(255,255,255,.68);">Document Intelligence Assistant</span>
+                    </div>
+                    <div style="padding:14px; display:grid; gap:12px;">
+                      <div style="padding:12px; border-radius:14px; background:rgba(124,58,237,.16); border:1px solid rgba(124,58,237,.26);">
+                        <div style="font-size:12px; font-weight:900; color:rgba(255,255,255,.68); margin-bottom:6px;">User Question</div>
+                        <div style="font-size:13px; font-weight:800; color:rgba(255,255,255,.95);">What does the policy say about refund eligibility?</div>
+                      </div>
+                      <div style="padding:12px; border-radius:14px; background:rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.08);">
+                        <div style="font-size:12px; font-weight:900; color:rgba(255,255,255,.68); margin-bottom:6px;">Retrieved Context</div>
+                        <div style="font-size:13px; font-weight:700; color:rgba(238,242,255,.82); line-height:1.55;">The system surfaces relevant document chunks before generating an answer, improving traceability and grounded responses.</div>
+                      </div>
+                      <div style="padding:12px; border-radius:14px; background:rgba(34,211,238,.10); border:1px solid rgba(34,211,238,.22);">
+                        <div style="font-size:12px; font-weight:900; color:rgba(255,255,255,.68); margin-bottom:6px;">AI Answer</div>
+                        <div style="font-size:13px; font-weight:800; color:rgba(255,255,255,.95);">Eligible refunds must be requested within the defined policy window, based on the retrieved source content.</div>
+                      </div>
+                    </div>
+                  </div>
+                  <div style="margin-top:10px; font-size:12px; color:rgba(238,242,255,.62); font-weight:800;">Replace this mockup with your real screenshot or demo GIF when ready.</div>
+                </div>
+              </div>
+
+              <div style="display:flex; flex-direction:column; gap:10px; justify-content:center;">
+                <div class="callout" data-hover>
+                  <div class="t">Why lead with RAG</div>
+                  <div class="d">It immediately shows clients you can build modern AI systems that search, retrieve, and answer from private business knowledge.</div>
+                </div>
+                <div class="callout" data-hover>
+                  <div class="t">Strong buyer signal</div>
+                  <div class="d">Document intelligence and internal AI assistants are easier for businesses to understand than generic model demos.</div>
+                </div>
+                <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:4px;">
+                  <a class="btn primary" href="https://github.com/bdcreativesystems-star" target="_blank" rel="noreferrer" data-hover>
+                    View RAG Project <small>↗</small>
+                  </a>
+                  <a class="btn" href="mailto:bdcreativesystems@gmail.com" data-hover>
+                    Need Something Similar?
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="card project reveal">
+          <div class="inner">
+            <h3>AutoML Dashboard — End-to-End Model Training & Evaluation Platform</h3>
+            <p>
+              A Python-based machine learning dashboard designed to help users upload structured data, prepare datasets, run training workflows,
+              compare model performance, and identify the best model through a clean interface.
+            </p>
+
+            <div class="tech">
+              <span class="tag" data-hover>Python</span>
+              <span class="tag" data-hover>Scikit-learn</span>
+              <span class="tag" data-hover>Pandas</span>
+              <span class="tag" data-hover>Dash</span>
+              <span class="tag" data-hover>FastAPI</span>
+            </div>
+
+            <div class="callouts" style="grid-template-columns:1fr; margin-top:12px;">
+              <div class="callout" data-hover>
+                <div class="t">Client Use Cases</div>
+                <div class="d">Internal analytics tools, model evaluation dashboards, experiment workflows, and prediction-focused business software.</div>
+              </div>
+            </div>
+
+            <div class="footer">
+              <span>Model training • Evaluation • Workflow automation</span>
+              <a href="https://github.com/bdcreativesystems-star" target="_blank" rel="noreferrer" data-hover>View Project ↗</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="card project reveal">
+          <div class="inner">
+            <h3>Automated Tabular ML Training System</h3>
+            <p>
+              A reusable Python workflow for training machine learning models on structured data with automated comparisons, evaluation, and reporting.
+            </p>
+
+            <div class="footer">
+              <span>Python • ML workflow automation</span>
+              <a href="https://github.com/bdcreativesystems-star" target="_blank" rel="noreferrer" data-hover>GitHub ↗</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="card project reveal">
+          <div class="inner">
+            <h3>Freelancer Financial CRM</h3>
+            <p>
+              A business-focused tool for tracking clients, invoices, revenue, and analytics — showing how I build practical software for operations and visibility.
+            </p>
+
+            <div class="footer">
+              <span>Business tools • Data tracking</span>
+              <a href="https://github.com/bdcreativesystems-star" target="_blank" rel="noreferrer" data-hover>GitHub ↗</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="cta-banner reveal">
+          <div>
+            <h3>Have an AI/ML, RAG, or Python project in mind?</h3>
+            <p>
+              I’m available for freelance work building intelligent tools, RAG applications, dashboards, backend services, automation systems, and custom business software.
+            </p>
+          </div>
+          <a class="btn primary" href="mailto:bdcreativesystems@gmail.com" data-hover>Let’s Talk</a>
+        </article>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="section-title reveal">
+        <h2>About</h2>
+        <p>How I approach client work.</p>
+      </div>
+
+      <div class="grid">
+        <div class="card pad about-main reveal">
+          <h3>Python developer focused on AI/ML tools and intelligent software</h3>
+          <p class="muted">
+            I’m a freelance Python developer specializing in AI/ML software, intelligent tools, RAG systems, dashboards, and backend applications.
+            My focus is building solutions that are not only technically strong, but also useful to the people and businesses that rely on them.
+          </p>
+
+          <div class="stat-grid">
+            <div class="stat" data-hover>
+              <div class="num">Python</div>
+              <div class="lbl">Core development focus</div>
+            </div>
+            <div class="stat" data-hover>
+              <div class="num">AI/ML</div>
+              <div class="lbl">Specialized tools & systems</div>
+            </div>
+            <div class="stat" data-hover>
+              <div class="num">RAG</div>
+              <div class="lbl">Flagship portfolio direction</div>
+            </div>
+          </div>
+
+          <div class="quick-links">
+            <a class="pill" href="mailto:bdcreativesystems@gmail.com" data-hover>Email Me</a>
+            <a class="pill" href="https://github.com/bdcreativesystems-star" target="_blank" rel="noreferrer" data-hover>GitHub ↗</a>
+            <a class="pill" href="https://linkedin.com/in/brandi-kitchens-706275a8" target="_blank" rel="noreferrer" data-hover>LinkedIn ↗</a>
+          </div>
+        </div>
+
+        <div class="card pad about-side reveal">
+          <h3 style="margin:0 0 10px; font-size:16px; letter-spacing:-.2px;">What clients can expect</h3>
+          <div class="card pad" style="background:rgba(0,0,0,.18); border-color:rgba(255,255,255,.10);">
+            <ul style="margin:0; padding-left:18px; color:var(--muted); font-weight:750; line-height:1.65;">
+              <li>Clear, business-focused project thinking</li>
+              <li>Python-first development with scalable structure</li>
+              <li>AI/ML features designed for real product use</li>
+              <li>RAG systems, dashboards, APIs, and automation</li>
+              <li>Custom solutions built around actual needs</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="skills">
+      <div class="section-title reveal">
+        <h2>Technical Focus</h2>
+        <p>The tools I use to build client solutions.</p>
+      </div>
+
+      <div class="grid">
+        <div class="card pad skill-card reveal">
+          <h3>Python Development</h3>
+          <div class="chiplist">
+            <span class="mini" data-hover>Python</span>
+            <span class="mini" data-hover>Backend Logic</span>
+            <span class="mini" data-hover>Business Tools</span>
+            <span class="mini" data-hover>Automation Scripts</span>
+            <span class="mini" data-hover>Data Processing</span>
+          </div>
+        </div>
+
+        <div class="card pad skill-card reveal">
+          <h3>AI / Machine Learning</h3>
+          <div class="chiplist">
+            <span class="mini" data-hover>Scikit-learn</span>
+            <span class="mini" data-hover>Model Training</span>
+            <span class="mini" data-hover>Evaluation</span>
+            <span class="mini" data-hover>Feature Engineering</span>
+            <span class="mini" data-hover>RAG Systems</span>
+            <span class="mini" data-hover>Embeddings</span>
+          </div>
+        </div>
+
+        <div class="card pad skill-card reveal">
+          <h3>APIs & Dashboards</h3>
+          <div class="chiplist">
+            <span class="mini" data-hover>FastAPI</span>
+            <span class="mini" data-hover>Flask</span>
+            <span class="mini" data-hover>Dash</span>
+            <span class="mini" data-hover>Plotly</span>
+            <span class="mini" data-hover>Interactive UI</span>
+          </div>
+        </div>
+
+        <div class="card pad skill-card reveal">
+          <h3>Data & Analytics</h3>
+          <div class="chiplist">
+            <span class="mini" data-hover>Pandas</span>
+            <span class="mini" data-hover>NumPy</span>
+            <span class="mini" data-hover>Analytics Workflows</span>
+            <span class="mini" data-hover>Forecasting</span>
+            <span class="mini" data-hover>KPI Dashboards</span>
+          </div>
+        </div>
+
+        <div class="card pad skill-card reveal">
+          <h3>Tools & Deployment</h3>
+          <div class="chiplist">
+            <span class="mini" data-hover>Git</span>
+            <span class="mini" data-hover>GitHub</span>
+            <span class="mini" data-hover>SQLite</span>
+            <span class="mini" data-hover>Joblib</span>
+            <span class="mini" data-hover>Render</span>
+            <span class="mini" data-hover>VS Code</span>
+          </div>
+        </div>
+
+        <div class="card pad skill-card reveal">
+          <h3>Best Fit Projects</h3>
+          <p class="muted" style="margin:0;">
+            Great fit for internal AI tools, knowledge assistants, dashboards, data applications, workflow automation, and ML-powered software.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="section-title reveal">
+        <h2>Contact</h2>
+        <p>Ready to discuss your project?</p>
+      </div>
+
+      <div class="grid">
+        <div class="card pad reveal" style="grid-column:span 12;">
+          <div style="display:flex; gap:16px; flex-wrap:wrap; align-items:center; justify-content:space-between;">
+            <div>
+              <div style="font-weight:900; font-size:18px; letter-spacing:-.2px;">Let’s build something useful with Python and AI.</div>
+              <div class="muted2" style="margin-top:6px;">
+                I’m available for freelance projects involving AI/ML tools, RAG systems, dashboards, APIs, automation, and custom business software.
+              </div>
+            </div>
+
+            <div style="display:flex; gap:10px; flex-wrap:wrap;">
+              <a class="btn primary" href="mailto:bdcreativesystems@gmail.com" data-hover>Start a Project</a>
+              <a class="btn" href="https://linkedin.com/in/brandi-kitchens-706275a8" target="_blank" rel="noreferrer" data-hover>LinkedIn ↗</a>
+              <a class="btn" href="https://github.com/bdcreativesystems-star" target="_blank" rel="noreferrer" data-hover>GitHub ↗</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="reveal">
+      <div>© <span id="year"></span> Brandi Kitchens • Freelance Python Developer</div>
+      <div>AI/ML Tools • RAG Systems • Dashboards • APIs • Automation</div>
+    </footer>
+  </div>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    const cursor = document.getElementById("cursor");
+    const ring = document.getElementById("cursorRing");
+    let cx = 0, cy = 0, rx = 0, ry = 0;
+
+    const showCursor = () => {
+      cursor.style.opacity = 1;
+      ring.style.opacity = 1;
+    };
+
+    window.addEventListener("mousemove", (e) => {
+      cx = e.clientX;
+      cy = e.clientY;
+      cursor.style.left = cx + "px";
+      cursor.style.top = cy + "px";
+      showCursor();
+    });
+
+    function tick(){
+      rx += (cx - rx) * 0.18;
+      ry += (cy - ry) * 0.18;
+      ring.style.left = rx + "px";
+      ring.style.top = ry + "px";
+      requestAnimationFrame(tick);
+    }
+    tick();
+
+    const hoverables = document.querySelectorAll("[data-hover], a, button");
+    hoverables.forEach(el => {
+      el.addEventListener("mouseenter", () => {
+        cursor.classList.add("is-hover");
+        ring.classList.add("is-hover");
+      });
+      el.addEventListener("mouseleave", () => {
+        cursor.classList.remove("is-hover");
+        ring.classList.remove("is-hover");
+      });
+    });
+
+    window.addEventListener("mouseleave", () => {
+      cursor.style.opacity = 0;
+      ring.style.opacity = 0;
+    });
+
+    const reveals = document.querySelectorAll(".reveal");
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(ent => {
+        if (ent.isIntersecting) ent.target.classList.add("in");
+      });
+    }, { threshold: 0.12 });
+
+    reveals.forEach(r => io.observe(r));
+  </script>
+</body>
+</html>
+
