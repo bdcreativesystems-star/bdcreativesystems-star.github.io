@@ -324,7 +324,7 @@ But when the retrieval works and the model answers with precise, grounded knowle
 
 Below is the working dashboard of the RAG system.
 
-![RAG System Dashboard](/images/dashboard.png)
+![RAG System Dashboard]({{ site.baseurl }}/dashboard.png)
 ---
 
 # References
