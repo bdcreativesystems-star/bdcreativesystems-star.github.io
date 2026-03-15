@@ -7,7 +7,7 @@ tags: [Python, AutoML, FastAPI, Scikit-Learn, AI Systems]
 ---
 
 # Designing an End-to-End AutoML Platform with Python and FastAPI
-
+![AutoML System Architecture](/dashboard.png)
 Machine learning projects usually start the same way.
 
 You open a notebook.  
@@ -37,6 +37,27 @@ Essentially turning raw data into a **live machine learning service**.
 
 Let’s walk through how the system works.
 
+## Table of Contents
+
+- System Architecture
+- Dataset Ingestion
+- Feature Analysis
+- Automated Model Selection
+- Model Training Pipeline
+- Model Evaluation
+- Model Versioning
+- Async Training
+- Prediction API
+- Final Thoughts
+- 
+## Tech Stack
+
+- Python
+- FastAPI
+- Scikit-learn
+- Pandas
+- joblib
+- Async task queues
 ---
 
 # System Architecture
@@ -61,6 +82,14 @@ Model Registry
 ↓  
 Prediction API  
 
+
+## Architecture Overview
+
+The AutoML system follows a modular pipeline:
+
+Dataset → Feature Analysis → Model Training → Model Evaluation → Model Registry → Prediction API
+
+Each component is designed to be independent so the platform can scale as datasets grow.
 The goal is simple:
 
 Take a dataset and automatically produce a **deployable machine learning model**.
