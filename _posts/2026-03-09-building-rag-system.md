@@ -1,3 +1,10 @@
+---
+layout: post
+title: "Building a Retrieval-Augmented Generation (RAG) System with Python"
+date: 2026-03-09
+tags: [python, rag, vector-search, embeddings, fastapi, ai-engineering]
+---
+
 # Building a Retrieval-Augmented Generation (RAG) System with Python
 
 *A practical engineering walkthrough*

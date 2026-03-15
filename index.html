@@ -18,84 +18,63 @@
 
   <style>
     :root{
-      --bg:#060814;
-      --panel:rgba(255,255,255,.06);
-      --panel2:rgba(255,255,255,.08);
-      --border:rgba(255,255,255,.12);
-      --text:#eef2ff;
-      --muted:rgba(238,242,255,.72);
-      --muted2:rgba(238,242,255,.55);
+      --bg:#fcf8ff;
+      --bg-soft:#f8f1ff;
+      --panel:rgba(255,255,255,.82);
+      --panel-strong:rgba(255,255,255,.94);
+      --panel-soft:rgba(255,255,255,.70);
+      --border:rgba(139,92,246,.15);
+      --text:#241f31;
+      --muted:rgba(36,31,49,.72);
+      --muted2:rgba(36,31,49,.56);
 
-      --g1:#7c3aed;
-      --g2:#22d3ee;
-      --g3:#f59e0b;
-      --g4:#10b981;
+      --g1:#8b5cf6;
+      --g2:#c084fc;
+      --g3:#ec4899;
+      --g4:#f9a8d4;
 
-      --shadow:0 18px 60px rgba(0,0,0,.55);
+      --shadow:0 18px 50px rgba(139,92,246,.10);
+      --shadow-lg:0 24px 70px rgba(139,92,246,.14);
       --radius:18px;
       --radius-lg:28px;
       --max:1160px;
+
       --ring:conic-gradient(
         from 210deg,
-        rgba(124,58,237,.95),
-        rgba(34,211,238,.90),
-        rgba(245,158,11,.90),
-        rgba(16,185,129,.85),
-        rgba(124,58,237,.95)
+        rgba(139,92,246,.95),
+        rgba(192,132,252,.92),
+        rgba(236,72,153,.88),
+        rgba(249,168,212,.82),
+        rgba(139,92,246,.95)
       );
     }
 
     *{box-sizing:border-box}
     html{scroll-behavior:smooth}
+
     body{
       margin:0;
       font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
       background:
-        radial-gradient(1100px 600px at 20% 10%, rgba(124,58,237,.23), transparent 56%),
-        radial-gradient(950px 550px at 84% 18%, rgba(34,211,238,.16), transparent 54%),
-        radial-gradient(850px 540px at 18% 92%, rgba(245,158,11,.11), transparent 55%),
-        radial-gradient(880px 560px at 82% 84%, rgba(16,185,129,.10), transparent 58%),
-        var(--bg);
+        radial-gradient(1000px 560px at 15% 8%, rgba(139,92,246,.14), transparent 56%),
+        radial-gradient(950px 540px at 88% 16%, rgba(236,72,153,.10), transparent 56%),
+        radial-gradient(780px 520px at 18% 88%, rgba(192,132,252,.10), transparent 54%),
+        radial-gradient(840px 520px at 82% 84%, rgba(249,168,212,.14), transparent 56%),
+        linear-gradient(180deg, #fcf8ff 0%, #ffffff 100%);
       color:var(--text);
       overflow-x:hidden;
-      cursor:none;
     }
 
     a{color:inherit;text-decoration:none}
     img{display:block;max-width:100%}
-    .wrap{max-width:var(--max);margin:0 auto;padding:28px 20px 90px}
 
-    .cursor{
-      position:fixed;
-      inset:0 auto auto 0;
-      width:14px;
-      height:14px;
-      border-radius:50%;
-      background:rgba(255,255,255,.92);
-      transform:translate(-50%,-50%);
-      pointer-events:none;
-      mix-blend-mode:difference;
-      z-index:9999;
-      opacity:0;
-      transition:width .15s ease,height .15s ease,opacity .15s ease;
+    .wrap{
+      max-width:var(--max);
+      margin:0 auto;
+      padding:28px 20px 90px;
+      position:relative;
+      z-index:2;
     }
-
-    .cursor-ring{
-      position:fixed;
-      inset:0 auto auto 0;
-      width:40px;
-      height:40px;
-      border-radius:999px;
-      border:1px solid rgba(255,255,255,.34);
-      transform:translate(-50%,-50%);
-      pointer-events:none;
-      z-index:9998;
-      opacity:0;
-      transition:width .15s ease,height .15s ease,opacity .15s ease;
-    }
-
-    .cursor.is-hover{width:10px;height:10px}
-    .cursor-ring.is-hover{width:54px;height:54px}
 
     .orbs{
       position:fixed;
@@ -110,28 +89,28 @@
       width:520px;
       height:520px;
       border-radius:50%;
-      filter:blur(28px);
-      opacity:.18;
+      filter:blur(30px);
+      opacity:.20;
       animation:drift 18s ease-in-out infinite;
     }
 
     .orb.o1{
       left:-120px;
       top:-130px;
-      background:radial-gradient(circle at 30% 30%, rgba(124,58,237,.9), transparent 58%);
+      background:radial-gradient(circle at 30% 30%, rgba(139,92,246,.70), transparent 58%);
     }
 
     .orb.o2{
       right:-180px;
       top:40px;
-      background:radial-gradient(circle at 30% 30%, rgba(34,211,238,.82), transparent 60%);
+      background:radial-gradient(circle at 30% 30%, rgba(236,72,153,.48), transparent 60%);
       animation-duration:22s;
     }
 
     .orb.o3{
-      left:12%;
+      left:10%;
       bottom:-220px;
-      background:radial-gradient(circle at 30% 30%, rgba(245,158,11,.78), transparent 60%);
+      background:radial-gradient(circle at 30% 30%, rgba(192,132,252,.44), transparent 60%);
       animation-duration:25s;
     }
 
@@ -140,14 +119,23 @@
       50%{transform:translate3d(40px,-20px,0) scale(1.05)}
     }
 
+    .reveal{
+      opacity:0;
+      transform:translateY(10px) scale(.99);
+      transition:opacity .6s ease, transform .6s ease;
+    }
+
+    .reveal.in{
+      opacity:1;
+      transform:translateY(0) scale(1);
+    }
+
     header{
-      position:relative;
-      z-index:2;
       display:flex;
       align-items:center;
       justify-content:space-between;
       gap:16px;
-      padding:12px 0 22px;
+      padding:10px 0 24px;
     }
 
     .brand{
@@ -156,19 +144,27 @@
       gap:10px;
       font-weight:900;
       letter-spacing:.2px;
+      font-size:1.05rem;
     }
 
     .brand .dot{
       width:10px;
       height:10px;
       border-radius:50%;
-      background:linear-gradient(135deg,var(--g1),var(--g2));
-      box-shadow:0 0 0 6px rgba(124,58,237,.12);
+      background:linear-gradient(135deg,var(--g1),var(--g3));
+      box-shadow:0 0 0 7px rgba(139,92,246,.10);
+    }
+
+    .gradtext{
+      background:linear-gradient(90deg, rgba(139,92,246,.98), rgba(192,132,252,.98), rgba(236,72,153,.96));
+      -webkit-background-clip:text;
+      background-clip:text;
+      color:transparent;
     }
 
     nav{
       display:flex;
-      gap:12px;
+      gap:10px;
       flex-wrap:wrap;
     }
 
@@ -176,7 +172,7 @@
       color:var(--muted);
       font-weight:800;
       font-size:14px;
-      padding:10px;
+      padding:10px 12px;
       border-radius:999px;
       border:1px solid transparent;
       transition:.18s ease;
@@ -184,16 +180,15 @@
 
     nav a:hover{
       color:var(--text);
-      border-color:rgba(255,255,255,.12);
-      background:rgba(255,255,255,.04);
+      border-color:rgba(139,92,246,.12);
+      background:rgba(255,255,255,.58);
+      box-shadow:0 6px 18px rgba(139,92,246,.08);
     }
 
     .hero{
-      position:relative;
-      z-index:2;
       display:grid;
       grid-template-columns:1.08fr .92fr;
-      gap:28px;
+      gap:30px;
       align-items:center;
       padding:26px 0 10px;
     }
@@ -212,61 +207,55 @@
       display:inline-flex;
       align-items:center;
       gap:10px;
-      padding:9px 12px;
+      padding:10px 14px;
       border-radius:999px;
-      background:rgba(16,185,129,.10);
-      border:1px solid rgba(16,185,129,.24);
-      color:rgba(255,255,255,.94);
+      background:rgba(139,92,246,.08);
+      border:1px solid rgba(139,92,246,.16);
+      color:var(--text);
       font-size:13px;
       font-weight:900;
       width:fit-content;
+      box-shadow:0 8px 24px rgba(139,92,246,.08);
     }
 
     .pulse{
       width:8px;
       height:8px;
       border-radius:50%;
-      background:rgba(16,185,129,.95);
-      box-shadow:0 0 0 0 rgba(16,185,129,.55);
+      background:rgba(236,72,153,.95);
+      box-shadow:0 0 0 0 rgba(236,72,153,.34);
       animation:pulse 1.6s infinite;
     }
 
     @keyframes pulse{
-      0%{box-shadow:0 0 0 0 rgba(16,185,129,.55)}
-      70%{box-shadow:0 0 0 12px rgba(16,185,129,0)}
-      100%{box-shadow:0 0 0 0 rgba(16,185,129,0)}
+      0%{box-shadow:0 0 0 0 rgba(236,72,153,.34)}
+      70%{box-shadow:0 0 0 12px rgba(236,72,153,0)}
+      100%{box-shadow:0 0 0 0 rgba(236,72,153,0)}
     }
 
     h1{
-      margin:14px 0 10px;
-      font-size:clamp(38px,4.4vw,58px);
+      margin:16px 0 12px;
+      font-size:clamp(38px,4.4vw,60px);
       line-height:1.02;
-      letter-spacing:-.8px;
-    }
-
-    .gradtext{
-      background:linear-gradient(90deg, rgba(124,58,237,.98), rgba(34,211,238,.98), rgba(245,158,11,.96));
-      -webkit-background-clip:text;
-      background-clip:text;
-      color:transparent;
+      letter-spacing:-1px;
     }
 
     .tagline{
       margin:0 0 14px;
       color:var(--muted);
       font-size:16px;
-      line-height:1.6;
+      line-height:1.7;
       font-weight:700;
       max-width:66ch;
     }
 
-    .tagline b{color:rgba(255,255,255,.96)}
+    .tagline b{color:var(--text)}
 
     .pitch{
       margin:0;
-      color:rgba(255,255,255,.87);
+      color:rgba(36,31,49,.88);
       font-size:15px;
-      line-height:1.68;
+      line-height:1.72;
       font-weight:600;
       max-width:67ch;
     }
@@ -283,37 +272,40 @@
       align-items:center;
       justify-content:center;
       gap:10px;
-      padding:12px 14px;
-      border-radius:12px;
-      border:1px solid rgba(255,255,255,.14);
-      background:rgba(255,255,255,.06);
-      color:rgba(255,255,255,.96);
+      padding:12px 15px;
+      border-radius:14px;
+      border:1px solid rgba(139,92,246,.14);
+      background:rgba(255,255,255,.82);
+      color:var(--text);
       font-weight:900;
       font-size:14px;
-      transition:transform .14s ease, background .14s ease, border-color .14s ease;
-      box-shadow:0 10px 28px rgba(0,0,0,.24);
+      transition:transform .14s ease, background .14s ease, border-color .14s ease, box-shadow .14s ease;
+      box-shadow:0 10px 28px rgba(139,92,246,.08);
     }
 
     .btn:hover{
       transform:translateY(-2px);
-      background:rgba(255,255,255,.08);
-      border-color:rgba(255,255,255,.22);
+      background:rgba(255,255,255,.96);
+      border-color:rgba(139,92,246,.22);
+      box-shadow:0 14px 30px rgba(139,92,246,.12);
     }
 
     .btn.primary{
-      border-color:rgba(124,58,237,.30);
-      background:linear-gradient(135deg, rgba(124,58,237,.34), rgba(34,211,238,.18));
+      color:#fff;
+      border-color:rgba(139,92,246,.20);
+      background:linear-gradient(135deg, rgba(139,92,246,.96), rgba(236,72,153,.88));
+      box-shadow:0 14px 30px rgba(139,92,246,.20);
     }
 
     .btn small{opacity:.8;font-weight:900}
 
     .visual{
       position:relative;
-      min-height:370px;
+      min-height:390px;
       border-radius:var(--radius-lg);
-      background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
-      border:1px solid rgba(255,255,255,.10);
-      box-shadow:var(--shadow);
+      background:linear-gradient(180deg, rgba(255,255,255,.88), rgba(255,255,255,.72));
+      border:1px solid rgba(139,92,246,.14);
+      box-shadow:var(--shadow-lg);
       overflow:hidden;
     }
 
@@ -322,10 +314,10 @@
       position:absolute;
       inset:-2px;
       background:
-        radial-gradient(620px 420px at 20% 20%, rgba(124,58,237,.34), transparent 56%),
-        radial-gradient(540px 420px at 82% 24%, rgba(34,211,238,.20), transparent 58%),
-        radial-gradient(560px 420px at 55% 82%, rgba(245,158,11,.16), transparent 64%);
-      opacity:.95;
+        radial-gradient(620px 420px at 20% 20%, rgba(139,92,246,.20), transparent 56%),
+        radial-gradient(540px 420px at 82% 24%, rgba(236,72,153,.14), transparent 58%),
+        radial-gradient(560px 420px at 55% 82%, rgba(192,132,252,.14), transparent 64%);
+      opacity:.96;
     }
 
     .ring{
@@ -337,7 +329,7 @@
       transform:translate(-50%,-50%);
       border-radius:50%;
       background:var(--ring);
-      filter:drop-shadow(0 18px 60px rgba(124,58,237,.18));
+      filter:drop-shadow(0 18px 60px rgba(139,92,246,.16));
       animation:spin 18s linear infinite;
       opacity:.95;
     }
@@ -347,8 +339,8 @@
       position:absolute;
       inset:12px;
       border-radius:50%;
-      background:radial-gradient(circle at 30% 30%, rgba(255,255,255,.10), rgba(255,255,255,.03) 55%, rgba(0,0,0,.08));
-      border:1px solid rgba(255,255,255,.10);
+      background:radial-gradient(circle at 30% 30%, rgba(255,255,255,.68), rgba(255,255,255,.24) 55%, rgba(255,255,255,.12));
+      border:1px solid rgba(255,255,255,.74);
     }
 
     @keyframes spin{
@@ -374,12 +366,13 @@
       padding:8px 10px;
       font-size:12px;
       font-weight:900;
-      color:rgba(255,255,255,.92);
+      color:var(--text);
       border-radius:999px;
-      background:rgba(255,255,255,.07);
-      border:1px solid rgba(255,255,255,.12);
+      background:rgba(255,255,255,.82);
+      border:1px solid rgba(139,92,246,.14);
       backdrop-filter:blur(8px);
       white-space:nowrap;
+      box-shadow:0 8px 20px rgba(139,92,246,.08);
     }
 
     .chip:nth-child(1){left:50%;top:-8px;transform:translateX(-50%)}
@@ -403,7 +396,7 @@
       font-weight:900;
       letter-spacing:.2px;
       font-size:12px;
-      color:rgba(255,255,255,.80);
+      color:rgba(36,31,49,.70);
       text-transform:uppercase;
     }
 
@@ -424,9 +417,7 @@
     }
 
     section{
-      position:relative;
-      z-index:2;
-      margin-top:56px;
+      margin-top:58px;
     }
 
     .section-title{
@@ -439,8 +430,8 @@
 
     .section-title h2{
       margin:0;
-      font-size:22px;
-      letter-spacing:-.2px;
+      font-size:24px;
+      letter-spacing:-.3px;
     }
 
     .section-title p{
@@ -458,10 +449,11 @@
 
     .card{
       border-radius:var(--radius);
-      background:rgba(255,255,255,.05);
-      border:1px solid rgba(255,255,255,.10);
-      box-shadow:0 10px 34px rgba(0,0,0,.24);
+      background:rgba(255,255,255,.78);
+      border:1px solid rgba(139,92,246,.14);
+      box-shadow:0 10px 34px rgba(139,92,246,.08);
       overflow:hidden;
+      backdrop-filter:blur(10px);
     }
 
     .card.pad{padding:16px}
@@ -469,24 +461,13 @@
     .muted{
       color:var(--muted);
       font-weight:700;
-      line-height:1.55;
+      line-height:1.6;
     }
 
     .muted2{
       color:var(--muted2);
       font-weight:700;
       line-height:1.55;
-    }
-
-    .reveal{
-      opacity:0;
-      transform:translateY(10px) scale(.99);
-      transition:opacity .6s ease, transform .6s ease;
-    }
-
-    .reveal.in{
-      opacity:1;
-      transform:translateY(0) scale(1);
     }
 
     .service{grid-column:span 4}
@@ -503,7 +484,7 @@
       margin:0;
       color:var(--muted);
       font-size:14px;
-      line-height:1.55;
+      line-height:1.6;
       font-weight:700;
     }
 
@@ -533,8 +514,8 @@
     .stat{
       padding:12px;
       border-radius:14px;
-      background:rgba(255,255,255,.04);
-      border:1px solid rgba(255,255,255,.10);
+      background:rgba(255,255,255,.78);
+      border:1px solid rgba(139,92,246,.12);
     }
 
     .stat .num{font-weight:900;font-size:18px}
@@ -553,9 +534,9 @@
       gap:8px;
       padding:10px 12px;
       border-radius:999px;
-      border:1px solid rgba(255,255,255,.12);
-      background:rgba(255,255,255,.05);
-      color:rgba(255,255,255,.90);
+      border:1px solid rgba(139,92,246,.14);
+      background:rgba(255,255,255,.82);
+      color:var(--text);
       font-weight:900;
       font-size:13px;
       transition:transform .14s ease, background .14s ease, border-color .14s ease;
@@ -563,8 +544,8 @@
 
     .pill:hover{
       transform:translateY(-2px);
-      background:rgba(255,255,255,.07);
-      border-color:rgba(255,255,255,.22);
+      background:rgba(255,255,255,.96);
+      border-color:rgba(139,92,246,.22);
     }
 
     .skill-card{grid-column:span 4}
@@ -589,16 +570,16 @@
       font-weight:900;
       padding:8px 10px;
       border-radius:999px;
-      border:1px solid rgba(255,255,255,.12);
-      background:rgba(255,255,255,.04);
-      color:rgba(255,255,255,.88);
+      border:1px solid rgba(139,92,246,.12);
+      background:rgba(255,255,255,.84);
+      color:var(--text);
     }
 
     .project-feature{
       grid-column:span 12;
       position:relative;
-      background:linear-gradient(135deg, rgba(124,58,237,.22), rgba(34,211,238,.10));
-      border-color:rgba(124,58,237,.22);
+      background:linear-gradient(135deg, rgba(139,92,246,.12), rgba(236,72,153,.08));
+      border-color:rgba(139,92,246,.18);
     }
 
     .project-feature::before{
@@ -606,8 +587,8 @@
       position:absolute;
       inset:-1px;
       background:
-        radial-gradient(900px 320px at 10% 10%, rgba(124,58,237,.24), transparent 55%),
-        radial-gradient(680px 320px at 85% 30%, rgba(34,211,238,.16), transparent 60%);
+        radial-gradient(900px 320px at 10% 10%, rgba(139,92,246,.16), transparent 55%),
+        radial-gradient(680px 320px at 85% 30%, rgba(236,72,153,.10), transparent 60%);
       pointer-events:none;
     }
 
@@ -619,7 +600,7 @@
     .project-feature h3{
       margin:0 0 6px;
       font-size:22px;
-      letter-spacing:-.2px;
+      letter-spacing:-.3px;
     }
 
     .project{grid-column:span 6}
@@ -637,7 +618,7 @@
       margin:0;
       color:var(--muted);
       font-weight:700;
-      line-height:1.55;
+      line-height:1.6;
     }
 
     .eyebrow{
@@ -646,11 +627,11 @@
       gap:8px;
       padding:8px 11px;
       border-radius:999px;
-      background:rgba(255,255,255,.06);
-      border:1px solid rgba(255,255,255,.12);
+      background:rgba(255,255,255,.78);
+      border:1px solid rgba(139,92,246,.12);
       font-size:12px;
       font-weight:900;
-      color:rgba(255,255,255,.92);
+      color:var(--text);
       margin-bottom:12px;
     }
 
@@ -666,9 +647,9 @@
       font-weight:900;
       padding:7px 10px;
       border-radius:999px;
-      border:1px solid rgba(255,255,255,.12);
-      background:rgba(0,0,0,.15);
-      color:rgba(255,255,255,.88);
+      border:1px solid rgba(139,92,246,.12);
+      background:rgba(255,255,255,.78);
+      color:var(--text);
       backdrop-filter:blur(10px);
     }
 
@@ -686,8 +667,8 @@
     .callout{
       padding:12px;
       border-radius:14px;
-      background:rgba(255,255,255,.05);
-      border:1px solid rgba(255,255,255,.12);
+      background:rgba(255,255,255,.78);
+      border:1px solid rgba(139,92,246,.12);
     }
 
     .callout .t{
@@ -710,7 +691,7 @@
       justify-content:space-between;
       gap:10px;
       flex-wrap:wrap;
-      color:rgba(255,255,255,.86);
+      color:rgba(36,31,49,.86);
       font-weight:900;
       font-size:13px;
     }
@@ -719,8 +700,8 @@
       grid-column:span 12;
       padding:20px;
       border-radius:22px;
-      background:linear-gradient(135deg, rgba(124,58,237,.22), rgba(34,211,238,.10));
-      border:1px solid rgba(255,255,255,.12);
+      background:linear-gradient(135deg, rgba(139,92,246,.12), rgba(236,72,153,.08));
+      border:1px solid rgba(139,92,246,.14);
       display:flex;
       align-items:center;
       justify-content:space-between;
@@ -747,14 +728,12 @@
       color:var(--muted2);
       font-weight:700;
       font-size:13px;
-      position:relative;
-      z-index:2;
       display:flex;
       justify-content:space-between;
       gap:12px;
       flex-wrap:wrap;
       padding-top:18px;
-      border-top:1px solid rgba(255,255,255,.10);
+      border-top:1px solid rgba(139,92,246,.12);
     }
   </style>
 </head>
@@ -765,9 +744,6 @@
     <div class="orb o3"></div>
   </div>
 
-  <div class="cursor" id="cursor"></div>
-  <div class="cursor-ring" id="cursorRing"></div>
-
   <div class="wrap">
     <header class="reveal">
       <div class="brand">
@@ -776,17 +752,17 @@
       </div>
 
       <nav>
-        <a href="#services" data-hover>Services</a>
-        <a href="#projects" data-hover>Projects</a>
-        <a href="/blog" data-hover>Blog</a>
-        <a href="#about" data-hover>About</a>
-        <a href="#contact" data-hover>Contact</a>
+        <a href="#services">Services</a>
+        <a href="#projects">Projects</a>
+        <a href="/blog/">Blog</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
       </nav>
     </header>
 
     <section class="hero">
       <div class="reveal">
-        <div class="badge" data-hover>
+        <div class="badge">
           <span class="pulse"></span>
           Available for freelance AI/ML and Python projects
         </div>
@@ -802,24 +778,25 @@
         </p>
 
         <p class="pitch">
-          I help businesses turn documents, data, and repetitive workflows into intelligent software they can actually use — from RAG-powered knowledge assistants to machine learning dashboards, automation systems, and internal AI tools.
+          I help businesses turn documents, data, and repetitive workflows into intelligent software they can actually use —
+          from RAG-powered knowledge assistants to machine learning dashboards, automation systems, and internal AI tools.
         </p>
 
         <div style="margin-top:16px; display:flex; flex-wrap:wrap; gap:8px;">
-          <span class="tag" data-hover>Python</span>
-          <span class="tag" data-hover>FastAPI</span>
-          <span class="tag" data-hover>RAG</span>
-          <span class="tag" data-hover>Embeddings</span>
-          <span class="tag" data-hover>Vector Search</span>
-          <span class="tag" data-hover>LLM Integration</span>
+          <span class="tag">Python</span>
+          <span class="tag">FastAPI</span>
+          <span class="tag">RAG</span>
+          <span class="tag">Embeddings</span>
+          <span class="tag">Vector Search</span>
+          <span class="tag">LLM Integration</span>
         </div>
 
         <div class="cta-row">
-          <a class="btn primary" href="mailto:bdcreativesystems@gmail.com" data-hover>Start a Project</a>
-          <a class="btn" href="https://github.com/bdcreativesystems-star" target="_blank" rel="noreferrer" data-hover>
+          <a class="btn primary" href="mailto:bdcreativesystems@gmail.com">Start a Project</a>
+          <a class="btn" href="https://github.com/bdcreativesystems-star" target="_blank" rel="noreferrer">
             GitHub <small>↗</small>
           </a>
-          <a class="btn" href="https://linkedin.com/in/brandi-kitchens-706275a8" target="_blank" rel="noreferrer" data-hover>
+          <a class="btn" href="https://linkedin.com/in/brandi-kitchens-706275a8" target="_blank" rel="noreferrer">
             LinkedIn <small>↗</small>
           </a>
         </div>
@@ -828,12 +805,12 @@
       <div class="visual reveal" aria-label="Animated skill ring">
         <div class="ring"></div>
         <div class="orbit" aria-hidden="true">
-          <div class="chip" data-hover>RAG Systems</div>
-          <div class="chip" data-hover>AI/ML Tools</div>
-          <div class="chip" data-hover>Dashboards</div>
-          <div class="chip" data-hover>APIs</div>
-          <div class="chip" data-hover>Automation</div>
-          <div class="chip" data-hover>Python Apps</div>
+          <div class="chip">RAG Systems</div>
+          <div class="chip">AI/ML Tools</div>
+          <div class="chip">Dashboards</div>
+          <div class="chip">APIs</div>
+          <div class="chip">Automation</div>
+          <div class="chip">Python Apps</div>
         </div>
 
         <div class="visual-center">
@@ -901,77 +878,77 @@
             </p>
 
             <p style="margin-top:14px;">
-              <a href="/2026/03/09/building-rag-system.html">Read the engineering breakdown →</a>
+              <a href="/blog/building-rag-system/">Read the engineering breakdown →</a>
             </p>
 
             <div class="tech">
-              <span class="tag" data-hover>Python</span>
-              <span class="tag" data-hover>RAG</span>
-              <span class="tag" data-hover>Embeddings</span>
-              <span class="tag" data-hover>Vector Search</span>
-              <span class="tag" data-hover>LLM Integration</span>
-              <span class="tag" data-hover>FastAPI</span>
+              <span class="tag">Python</span>
+              <span class="tag">RAG</span>
+              <span class="tag">Embeddings</span>
+              <span class="tag">Vector Search</span>
+              <span class="tag">LLM Integration</span>
+              <span class="tag">FastAPI</span>
             </div>
 
             <div class="callouts">
-              <div class="callout" data-hover>
+              <div class="callout">
                 <div class="t">Architecture</div>
                 <div class="d">Document ingestion → chunking → embeddings → retrieval → grounded answer generation.</div>
               </div>
-              <div class="callout" data-hover>
+              <div class="callout">
                 <div class="t">Client Use Cases</div>
                 <div class="d">Internal documentation assistants, FAQ tools, searchable knowledge bases, support workflows, and private business AI.</div>
               </div>
-              <div class="callout" data-hover>
+              <div class="callout">
                 <div class="t">Business Value</div>
                 <div class="d">Helps teams search company knowledge faster and turn static documents into useful, interactive intelligence.</div>
               </div>
             </div>
 
             <div style="margin-top:16px; display:grid; grid-template-columns:1.15fr .85fr; gap:14px; align-items:stretch;">
-              <div class="card" style="min-height:260px; background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03)); border:1px solid rgba(255,255,255,.12); display:flex; align-items:center; justify-content:center; padding:18px;">
+              <div class="card" style="min-height:260px; background:linear-gradient(180deg, rgba(255,255,255,.90), rgba(255,255,255,.78)); border:1px solid rgba(139,92,246,.12); display:flex; align-items:center; justify-content:center; padding:18px;">
                 <div style="width:100%; max-width:520px;">
-                  <div style="font-size:12px; font-weight:900; color:rgba(255,255,255,.72); text-transform:uppercase; letter-spacing:.16em; margin-bottom:10px;">Featured RAG Preview</div>
-                  <div style="border-radius:18px; overflow:hidden; border:1px solid rgba(255,255,255,.10); background:rgba(7,10,22,.92); box-shadow:0 12px 40px rgba(0,0,0,.28);">
-                    <div style="display:flex; align-items:center; gap:8px; padding:10px 12px; border-bottom:1px solid rgba(255,255,255,.08); background:rgba(255,255,255,.03);">
+                  <div style="font-size:12px; font-weight:900; color:rgba(36,31,49,.62); text-transform:uppercase; letter-spacing:.16em; margin-bottom:10px;">Featured RAG Preview</div>
+                  <div style="border-radius:18px; overflow:hidden; border:1px solid rgba(139,92,246,.10); background:linear-gradient(180deg, #2d2440 0%, #1f1830 100%); box-shadow:0 12px 40px rgba(139,92,246,.14);">
+                    <div style="display:flex; align-items:center; gap:8px; padding:10px 12px; border-bottom:1px solid rgba(255,255,255,.08); background:rgba(255,255,255,.04);">
                       <span style="width:9px; height:9px; border-radius:50%; background:rgba(255,255,255,.45);"></span>
                       <span style="width:9px; height:9px; border-radius:50%; background:rgba(255,255,255,.28);"></span>
                       <span style="width:9px; height:9px; border-radius:50%; background:rgba(255,255,255,.18);"></span>
-                      <span style="margin-left:8px; font-size:12px; font-weight:800; color:rgba(255,255,255,.68);">Document Intelligence Assistant</span>
+                      <span style="margin-left:8px; font-size:12px; font-weight:800; color:rgba(255,255,255,.72);">Document Intelligence Assistant</span>
                     </div>
                     <div style="padding:14px; display:grid; gap:12px;">
-                      <div style="padding:12px; border-radius:14px; background:rgba(124,58,237,.16); border:1px solid rgba(124,58,237,.26);">
-                        <div style="font-size:12px; font-weight:900; color:rgba(255,255,255,.68); margin-bottom:6px;">User Question</div>
+                      <div style="padding:12px; border-radius:14px; background:rgba(139,92,246,.18); border:1px solid rgba(139,92,246,.26);">
+                        <div style="font-size:12px; font-weight:900; color:rgba(255,255,255,.72); margin-bottom:6px;">User Question</div>
                         <div style="font-size:13px; font-weight:800; color:rgba(255,255,255,.95);">What does the policy say about refund eligibility?</div>
                       </div>
-                      <div style="padding:12px; border-radius:14px; background:rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.08);">
-                        <div style="font-size:12px; font-weight:900; color:rgba(255,255,255,.68); margin-bottom:6px;">Retrieved Context</div>
-                        <div style="font-size:13px; font-weight:700; color:rgba(238,242,255,.82); line-height:1.55;">The system surfaces relevant document chunks before generating an answer, improving traceability and grounded responses.</div>
+                      <div style="padding:12px; border-radius:14px; background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.08);">
+                        <div style="font-size:12px; font-weight:900; color:rgba(255,255,255,.72); margin-bottom:6px;">Retrieved Context</div>
+                        <div style="font-size:13px; font-weight:700; color:rgba(238,242,255,.84); line-height:1.55;">The system surfaces relevant document chunks before generating an answer, improving traceability and grounded responses.</div>
                       </div>
-                      <div style="padding:12px; border-radius:14px; background:rgba(34,211,238,.10); border:1px solid rgba(34,211,238,.22);">
-                        <div style="font-size:12px; font-weight:900; color:rgba(255,255,255,.68); margin-bottom:6px;">AI Answer</div>
+                      <div style="padding:12px; border-radius:14px; background:rgba(236,72,153,.14); border:1px solid rgba(236,72,153,.22);">
+                        <div style="font-size:12px; font-weight:900; color:rgba(255,255,255,.72); margin-bottom:6px;">AI Answer</div>
                         <div style="font-size:13px; font-weight:800; color:rgba(255,255,255,.95);">Eligible refunds must be requested within the defined policy window, based on the retrieved source content.</div>
                       </div>
                     </div>
                   </div>
-                  <div style="margin-top:10px; font-size:12px; color:rgba(238,242,255,.62); font-weight:800;">Replace this mockup with your real screenshot or demo GIF when ready.</div>
+                  <div style="margin-top:10px; font-size:12px; color:rgba(36,31,49,.58); font-weight:800;">Replace this mockup with your real screenshot or demo GIF when ready.</div>
                 </div>
               </div>
 
               <div style="display:flex; flex-direction:column; gap:10px; justify-content:center;">
-                <div class="callout" data-hover>
+                <div class="callout">
                   <div class="t">Why lead with RAG</div>
                   <div class="d">It immediately shows clients you can build modern AI systems that search, retrieve, and answer from private business knowledge.</div>
                 </div>
-                <div class="callout" data-hover>
+                <div class="callout">
                   <div class="t">Strong buyer signal</div>
                   <div class="d">Document intelligence and internal AI assistants are easier for businesses to understand than generic model demos.</div>
                 </div>
                 <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:4px;">
-                  <a class="btn primary" href="https://github.com/bdcreativesystems-star" target="_blank" rel="noreferrer" data-hover>
+                  <a class="btn primary" href="https://github.com/bdcreativesystems-star" target="_blank" rel="noreferrer">
                     View RAG Project <small>↗</small>
                   </a>
-                  <a class="btn" href="mailto:bdcreativesystems@gmail.com" data-hover>
+                  <a class="btn" href="mailto:bdcreativesystems@gmail.com">
                     Need Something Similar?
                   </a>
                 </div>
@@ -989,15 +966,15 @@
             </p>
 
             <div class="tech">
-              <span class="tag" data-hover>Python</span>
-              <span class="tag" data-hover>Scikit-learn</span>
-              <span class="tag" data-hover>Pandas</span>
-              <span class="tag" data-hover>Dash</span>
-              <span class="tag" data-hover>FastAPI</span>
+              <span class="tag">Python</span>
+              <span class="tag">Scikit-learn</span>
+              <span class="tag">Pandas</span>
+              <span class="tag">Dash</span>
+              <span class="tag">FastAPI</span>
             </div>
 
             <div class="callouts" style="grid-template-columns:1fr; margin-top:12px;">
-              <div class="callout" data-hover>
+              <div class="callout">
                 <div class="t">Client Use Cases</div>
                 <div class="d">Internal analytics tools, model evaluation dashboards, experiment workflows, and prediction-focused business software.</div>
               </div>
@@ -1005,7 +982,7 @@
 
             <div class="footer">
               <span>Model training • Evaluation • Workflow automation</span>
-              <a href="https://github.com/bdcreativesystems-star" target="_blank" rel="noreferrer" data-hover>View Project ↗</a>
+              <a href="https://github.com/bdcreativesystems-star" target="_blank" rel="noreferrer">View Project ↗</a>
             </div>
           </div>
         </article>
@@ -1019,7 +996,7 @@
 
             <div class="footer">
               <span>Python • ML workflow automation</span>
-              <a href="https://github.com/bdcreativesystems-star" target="_blank" rel="noreferrer" data-hover>GitHub ↗</a>
+              <a href="https://github.com/bdcreativesystems-star" target="_blank" rel="noreferrer">GitHub ↗</a>
             </div>
           </div>
         </article>
@@ -1033,7 +1010,7 @@
 
             <div class="footer">
               <span>Business tools • Data tracking</span>
-              <a href="https://github.com/bdcreativesystems-star" target="_blank" rel="noreferrer" data-hover>GitHub ↗</a>
+              <a href="https://github.com/bdcreativesystems-star" target="_blank" rel="noreferrer">GitHub ↗</a>
             </div>
           </div>
         </article>
@@ -1045,7 +1022,7 @@
               I’m available for freelance work building intelligent tools, RAG applications, dashboards, backend services, automation systems, and custom business software.
             </p>
           </div>
-          <a class="btn primary" href="mailto:bdcreativesystems@gmail.com" data-hover>Let’s Talk</a>
+          <a class="btn primary" href="mailto:bdcreativesystems@gmail.com">Let’s Talk</a>
         </article>
       </div>
     </section>
@@ -1065,7 +1042,7 @@
         </p>
 
         <p style="margin-top:14px;">
-          <a href="/2026/03/09/building-rag-system.html">
+          <a href="/blog/building-rag-system/">
             Read the full engineering breakdown →
           </a>
         </p>
@@ -1087,31 +1064,31 @@
           </p>
 
           <div class="stat-grid">
-            <div class="stat" data-hover>
+            <div class="stat">
               <div class="num">Python</div>
               <div class="lbl">Core development focus</div>
             </div>
-            <div class="stat" data-hover>
+            <div class="stat">
               <div class="num">AI/ML</div>
               <div class="lbl">Specialized tools & systems</div>
             </div>
-            <div class="stat" data-hover>
+            <div class="stat">
               <div class="num">RAG</div>
               <div class="lbl">Flagship portfolio direction</div>
             </div>
           </div>
 
           <div class="quick-links">
-            <a class="pill" href="mailto:bdcreativesystems@gmail.com" data-hover>Email Me</a>
-            <a class="pill" href="https://github.com/bdcreativesystems-star" target="_blank" rel="noreferrer" data-hover>GitHub ↗</a>
-            <a class="pill" href="https://linkedin.com/in/brandi-kitchens-706275a8" target="_blank" rel="noreferrer" data-hover>LinkedIn ↗</a>
+            <a class="pill" href="mailto:bdcreativesystems@gmail.com">Email Me</a>
+            <a class="pill" href="https://github.com/bdcreativesystems-star" target="_blank" rel="noreferrer">GitHub ↗</a>
+            <a class="pill" href="https://linkedin.com/in/brandi-kitchens-706275a8" target="_blank" rel="noreferrer">LinkedIn ↗</a>
           </div>
         </div>
 
         <div class="card pad about-side reveal">
           <h3 style="margin:0 0 10px; font-size:16px; letter-spacing:-.2px;">What clients can expect</h3>
-          <div class="card pad" style="background:rgba(0,0,0,.18); border-color:rgba(255,255,255,.10);">
-            <ul style="margin:0; padding-left:18px; color:var(--muted); font-weight:750; line-height:1.65;">
+          <div class="card pad" style="background:rgba(255,255,255,.58); border-color:rgba(139,92,246,.10); box-shadow:none;">
+            <ul style="margin:0; padding-left:18px; color:var(--muted); font-weight:750; line-height:1.7;">
               <li>Clear, business-focused project thinking</li>
               <li>Python-first development with scalable structure</li>
               <li>AI/ML features designed for real product use</li>
@@ -1133,57 +1110,57 @@
         <div class="card pad skill-card reveal">
           <h3>Python Development</h3>
           <div class="chiplist">
-            <span class="mini" data-hover>Python</span>
-            <span class="mini" data-hover>Backend Logic</span>
-            <span class="mini" data-hover>Business Tools</span>
-            <span class="mini" data-hover>Automation Scripts</span>
-            <span class="mini" data-hover>Data Processing</span>
+            <span class="mini">Python</span>
+            <span class="mini">Backend Logic</span>
+            <span class="mini">Business Tools</span>
+            <span class="mini">Automation Scripts</span>
+            <span class="mini">Data Processing</span>
           </div>
         </div>
 
         <div class="card pad skill-card reveal">
           <h3>AI / Machine Learning</h3>
           <div class="chiplist">
-            <span class="mini" data-hover>Scikit-learn</span>
-            <span class="mini" data-hover>Model Training</span>
-            <span class="mini" data-hover>Evaluation</span>
-            <span class="mini" data-hover>Feature Engineering</span>
-            <span class="mini" data-hover>RAG Systems</span>
-            <span class="mini" data-hover>Embeddings</span>
+            <span class="mini">Scikit-learn</span>
+            <span class="mini">Model Training</span>
+            <span class="mini">Evaluation</span>
+            <span class="mini">Feature Engineering</span>
+            <span class="mini">RAG Systems</span>
+            <span class="mini">Embeddings</span>
           </div>
         </div>
 
         <div class="card pad skill-card reveal">
           <h3>APIs & Dashboards</h3>
           <div class="chiplist">
-            <span class="mini" data-hover>FastAPI</span>
-            <span class="mini" data-hover>Flask</span>
-            <span class="mini" data-hover>Dash</span>
-            <span class="mini" data-hover>Plotly</span>
-            <span class="mini" data-hover>Interactive UI</span>
+            <span class="mini">FastAPI</span>
+            <span class="mini">Flask</span>
+            <span class="mini">Dash</span>
+            <span class="mini">Plotly</span>
+            <span class="mini">Interactive UI</span>
           </div>
         </div>
 
         <div class="card pad skill-card reveal">
           <h3>Data & Analytics</h3>
           <div class="chiplist">
-            <span class="mini" data-hover>Pandas</span>
-            <span class="mini" data-hover>NumPy</span>
-            <span class="mini" data-hover>Analytics Workflows</span>
-            <span class="mini" data-hover>Forecasting</span>
-            <span class="mini" data-hover>KPI Dashboards</span>
+            <span class="mini">Pandas</span>
+            <span class="mini">NumPy</span>
+            <span class="mini">Analytics Workflows</span>
+            <span class="mini">Forecasting</span>
+            <span class="mini">KPI Dashboards</span>
           </div>
         </div>
 
         <div class="card pad skill-card reveal">
           <h3>Tools & Deployment</h3>
           <div class="chiplist">
-            <span class="mini" data-hover>Git</span>
-            <span class="mini" data-hover>GitHub</span>
-            <span class="mini" data-hover>SQLite</span>
-            <span class="mini" data-hover>Joblib</span>
-            <span class="mini" data-hover>Render</span>
-            <span class="mini" data-hover>VS Code</span>
+            <span class="mini">Git</span>
+            <span class="mini">GitHub</span>
+            <span class="mini">SQLite</span>
+            <span class="mini">Joblib</span>
+            <span class="mini">Render</span>
+            <span class="mini">VS Code</span>
           </div>
         </div>
 
@@ -1213,9 +1190,9 @@
             </div>
 
             <div style="display:flex; gap:10px; flex-wrap:wrap;">
-              <a class="btn primary" href="mailto:bdcreativesystems@gmail.com" data-hover>Start a Project</a>
-              <a class="btn" href="https://linkedin.com/in/brandi-kitchens-706275a8" target="_blank" rel="noreferrer" data-hover>LinkedIn ↗</a>
-              <a class="btn" href="https://github.com/bdcreativesystems-star" target="_blank" rel="noreferrer" data-hover>GitHub ↗</a>
+              <a class="btn primary" href="mailto:bdcreativesystems@gmail.com">Start a Project</a>
+              <a class="btn" href="https://linkedin.com/in/brandi-kitchens-706275a8" target="_blank" rel="noreferrer">LinkedIn ↗</a>
+              <a class="btn" href="https://github.com/bdcreativesystems-star" target="_blank" rel="noreferrer">GitHub ↗</a>
             </div>
           </div>
         </div>
@@ -1230,50 +1207,6 @@
 
   <script>
     document.getElementById("year").textContent = new Date().getFullYear();
-
-    const cursor = document.getElementById("cursor");
-    const ring = document.getElementById("cursorRing");
-
-    let cx = 0, cy = 0, rx = 0, ry = 0;
-
-    const showCursor = () => {
-      cursor.style.opacity = 1;
-      ring.style.opacity = 1;
-    };
-
-    window.addEventListener("mousemove", (e) => {
-      cx = e.clientX;
-      cy = e.clientY;
-      cursor.style.left = cx + "px";
-      cursor.style.top = cy + "px";
-      showCursor();
-    });
-
-    function tick(){
-      rx += (cx - rx) * 0.18;
-      ry += (cy - ry) * 0.18;
-      ring.style.left = rx + "px";
-      ring.style.top = ry + "px";
-      requestAnimationFrame(tick);
-    }
-    tick();
-
-    const hoverables = document.querySelectorAll("[data-hover], a, button");
-    hoverables.forEach(el => {
-      el.addEventListener("mouseenter", () => {
-        cursor.classList.add("is-hover");
-        ring.classList.add("is-hover");
-      });
-      el.addEventListener("mouseleave", () => {
-        cursor.classList.remove("is-hover");
-        ring.classList.remove("is-hover");
-      });
-    });
-
-    window.addEventListener("mouseleave", () => {
-      cursor.style.opacity = 0;
-      ring.style.opacity = 0;
-    });
 
     const reveals = document.querySelectorAll(".reveal");
     const io = new IntersectionObserver((entries) => {
