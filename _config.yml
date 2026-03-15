@@ -1,8 +1,8 @@
 title: Brandi Kitchens
-description: AI/ML Engineer, Python Developer, and AI Tool Builder
-url: "https://bdcreativesystems-star.github.io"
-
+description: Freelance Python Developer and AI/ML Engineer
 theme: minima
 markdown: kramdown
+permalink: /blog/:title/
 
-author: Brandi Kitchens
+header_pages:
+  - blog.md
