@@ -4,6 +4,7 @@ title: "Designing an End-to-End AutoML Platform with Python and FastAPI"
 date: 2026-03-15
 categories: [AI Engineering, Machine Learning]
 tags: [python, automl, fastapi, machine-learning, ai-engineering]---
+---
 
 # Designing an End-to-End AutoML Platform with Python and FastAPI
 ![AutoML System Architecture](/dashboard.png)
