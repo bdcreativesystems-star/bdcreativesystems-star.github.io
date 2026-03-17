@@ -1,8 +1,0 @@
-title: Brandi Kitchens
-description: Freelance Python Developer and AI/ML Engineer
-theme: minima
-markdown: kramdown
-permalink: /blog/:title/
-
-header_pages:
-  - blog.md
