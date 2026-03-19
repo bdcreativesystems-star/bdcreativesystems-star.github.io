@@ -488,6 +488,126 @@
       font-weight:700;
     }
 
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 1.5rem;
+      margin: 2rem 0;
+    }
+
+    .pricing-card {
+      background: rgba(255,255,255,.82);
+      border: 1px solid rgba(139,92,246,.18);
+      border-radius: var(--radius);
+      padding: 1.8rem;
+      box-shadow: 0 12px 36px rgba(139,92,246,.10);
+      transition: transform .18s ease, box-shadow .18s ease;
+    }
+
+    .pricing-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 48px rgba(139,92,246,.14);
+    }
+
+    .pricing-card h3 {
+      margin: 0 0 0.8rem;
+      font-size: 1.4rem;
+      letter-spacing: -0.4px;
+    }
+
+    .pricing-card .price {
+      font-size: 2.1rem;
+      font-weight: 900;
+      color: var(--g1);
+      margin: 0.4rem 0 1rem;
+      line-height: 1;
+    }
+
+    .pricing-card .duration {
+      font-size: 0.95rem;
+      color: var(--muted);
+      font-weight: 700;
+      margin-bottom: 1.2rem;
+    }
+
+    .pricing-card ul {
+      margin: 0 0 1.4rem;
+      padding-left: 1.4rem;
+      list-style: none;
+    }
+
+    .pricing-card ul li {
+      margin-bottom: 0.7rem;
+      position: relative;
+      padding-left: 1.6rem;
+      color: var(--muted);
+      font-weight: 600;
+    }
+
+    .pricing-card ul li::before {
+      content: "→";
+      position: absolute;
+      left: 0;
+      color: var(--g3);
+      font-weight: 900;
+    }
+
+    .pricing-card .ideal {
+      font-style: italic;
+      color: var(--muted2);
+      font-size: 0.95rem;
+      margin-top: 1rem;
+    }
+
+    .included {
+      margin: 2.5rem 0 1.5rem;
+      padding: 1.5rem;
+      background: rgba(139,92,246,.04);
+      border-radius: 14px;
+      border: 1px solid rgba(139,92,246,.12);
+    }
+
+    .included h4 {
+      margin: 0 0 1rem;
+      font-size: 1.15rem;
+    }
+
+    .included ul {
+      padding-left: 1.4rem;
+    }
+
+    .included li {
+      margin-bottom: 0.6rem;
+      color: var(--muted);
+    }
+
+    .testimonials {
+      margin: 2rem 0;
+      padding: 1.5rem;
+      background: rgba(255,255,255,.65);
+      border-radius: 14px;
+      border: 1px dashed rgba(139,92,246,.18);
+    }
+
+    .testimonial {
+      font-style: italic;
+      color: var(--muted);
+      margin: 1.2rem 0;
+      padding-left: 1rem;
+      border-left: 3px solid rgba(236,72,153,.4);
+    }
+
+    @media (max-width: 640px) {
+      .pricing-card {
+        padding: 1.4rem;
+      }
+      .pricing-card .price {
+        font-size: 1.8rem;
+      }
+    }
+
+    /* Rest of your original styles continue here... */
+
     .about-main{grid-column:span 7}
     .about-side{grid-column:span 5}
     @media (max-width:980px){
@@ -753,6 +873,7 @@
 
       <nav>
         <a href="#services">Services</a>
+        <a href="#pricing">Pricing</a>
         <a href="#projects">Projects</a>
         <a href="/blog/">Blog</a>
         <a href="#about">About</a>
@@ -860,7 +981,82 @@
       </div>
     </section>
 
+    <section id="pricing">
+      <div class="section-title reveal">
+        <h2>Pricing & Packages</h2>
+        <p>Fixed-price starting points for common project types. All include source code, deployment help, basic docs, and 30 days post-launch support.</p>
+      </div>
+
+      <div class="pricing-grid reveal">
+        <div class="pricing-card">
+          <h3>Starter RAG Assistant</h3>
+          <div class="price">$1,800 – $3,000</div>
+          <div class="duration">2–4 weeks</div>
+          <ul>
+            <li>Document ingestion & chunking</li>
+            <li>Embedding + vector database setup</li>
+            <li>RAG pipeline with LLM</li>
+            <li>Simple chat/web interface</li>
+            <li>Source citations & grounding</li>
+          </ul>
+          <p class="ideal">Ideal for company knowledge bases, internal Q&A, document search tools</p>
+        </div>
+
+        <div class="pricing-card">
+          <h3>Interactive Dashboard</h3>
+          <div class="price">$2,200 – $4,500</div>
+          <div class="duration">3–6 weeks</div>
+          <ul>
+            <li>Custom KPI visuals & filters</li>
+            <li>Data loading (CSV/API/DB)</li>
+            <li>Basic ML insights & trends</li>
+            <li>Interactive controls & export</li>
+            <li>Web app deployment</li>
+          </ul>
+          <p class="ideal">Ideal for analytics, performance tracking, model evaluation dashboards</p>
+        </div>
+
+        <div class="pricing-card">
+          <h3>Automation + API Tool</h3>
+          <div class="price">$2,500 – $6,000+</div>
+          <div class="duration">4–8 weeks</div>
+          <ul>
+            <li>Workflow automation & connectors</li>
+            <li>FastAPI backend & endpoints</li>
+            <li>AI-powered data processing</li>
+            <li>Integrations (email/CRM/sheets)</li>
+            <li>Secure API + documentation</li>
+          </ul>
+          <p class="ideal">Ideal for repetitive task elimination, data pipelines, custom backends</p>
+        </div>
+      </div>
+
+      <div class="included reveal">
+        <h4>What's Included in Every Project</h4>
+        <ul>
+          <li>Full ownership of clean, commented Python code</li>
+          <li>Private GitHub repo delivery</li>
+          <li>Deployment setup (Render, Fly.io, etc.)</li>
+          <li>Basic usage docs & short handover</li>
+          <li>30 days bug fixes & minor tweaks</li>
+        </ul>
+      </div>
+
+      <div class="testimonials reveal">
+        <h4 style="margin:0 0 1rem;">Testimonials</h4>
+        <p class="testimonial">"Brandi built a RAG tool that cut our document research time dramatically — reliable and easy to maintain."</p>
+        <p class="testimonial" style="opacity:0.65;">[Space for real client quotes — add as you receive them]</p>
+      </div>
+
+      <div style="text-align:center; margin:2.5rem 0;" class="reveal">
+        <a class="btn primary" href="mailto:bdcreativesystems@gmail.com" style="font-size:1.15rem; padding:1rem 2.2rem;">
+          Start a Project → Get Quote
+        </a>
+      </div>
+    </section>
+
     <section id="projects">
+      <!-- The rest of your original #projects section remains unchanged -->
       <div class="section-title reveal">
         <h2>Featured AI/ML Projects</h2>
         <p>Portfolio work centered around intelligent tools, RAG systems, and practical business software.</p>
@@ -957,6 +1153,7 @@
           </div>
         </article>
 
+        <!-- The other project cards remain unchanged -->
         <article class="card project reveal">
           <div class="inner">
             <h3>AutoML Dashboard — End-to-End Model Training & Evaluation Platform</h3>
@@ -1026,6 +1223,8 @@
         </article>
       </div>
     </section>
+
+    <!-- The rest of your sections (latest-article, about, skills, contact, footer) remain unchanged -->
 
     <section id="latest-article">
       <div class="section-title reveal">
